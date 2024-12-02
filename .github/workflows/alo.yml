@@ -1,0 +1,8 @@
+name: Hello github actions 
+on: [push]
+jobs: 
+  HelloWorld:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo "wolololo" 
+      - run: "ls -la"
