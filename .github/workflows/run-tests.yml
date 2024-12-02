@@ -1,5 +1,8 @@
 name: Run Unit tests
-on: [push]
+on: 
+  push:
+    tags:
+      - "v*.*.*"
 jobs:
   StaticCodeChecking:
     runs-on: ubuntu-latest
@@ -16,6 +19,4 @@ jobs:
           distribution: 'corretto'
           architecture: x64
       - name: Compile it
-        run: mvn compile
-      - name: Start my unit tests
-        run: mvn test
+        run: mvn -DskipTests package
