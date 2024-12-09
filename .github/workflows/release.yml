@@ -6,6 +6,8 @@ on:
 jobs:
   CreatePackage:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 11 for x64
@@ -17,4 +19,11 @@ jobs:
       - name: Compile it
         run: mvn -DskipTests package
       - run: "ls -la target/"
+      - run: "mv  target/*.jar target/ecommerce.jar"
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "release.tar.gz,foo/*.txt"
+          name: "My Release"
+          body: |
+            ## My release go
      
